@@ -19,11 +19,11 @@ public class PostController {
         return "This will return an individual post " + id;
     }
 
-    @RequestMapping(path = "/posts/{id}", method = RequestMethod.GET)
-    @ResponseBody
-    public String post(@PathVariable int id) {
-        return "This will return an individual post " + id;
-    }
+//    @RequestMapping(path = "/posts/{id}", method = RequestMethod.GET)
+//    @ResponseBody
+//    public String post(@PathVariable int id) {
+//        return "This will return an individual post " + id;
+//    }
 
 
 
