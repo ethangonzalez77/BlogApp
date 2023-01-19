@@ -16,5 +16,18 @@ public class HomeController {
 
 
 
+    //Below are some notes for the view aspect (aka Thymeleaf) of MVC
+    @GetMapping("/home")
+    public String welcome() {
+        return "home";
+
+        //🍩1. This particular component doesn't have a @ResponseBody annotation
+        //🍩2. That's because we are gunna respond with a html file by redirecting the user to that html file that has Thymeleaf.
+        //🍩3. So we don't need the @ResponseBody annotation
+        //🍩4. look at home.html file for notes that continue
+    }
+
+
+
 
 }
