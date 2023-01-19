@@ -16,7 +16,7 @@ public class HomeController {
 
 
 
-    //Below are some notes for the view aspect (aka Thymeleaf) of MVC
+    //🍩0.1. Below are some notes for the view aspect (aka Thymeleaf) of MVC, look for 🍩0.2 for the continuation for these notes
     @GetMapping("/home")
     public String welcome() {
         return "home";

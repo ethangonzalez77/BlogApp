@@ -1,5 +1,6 @@
 package com.codeup.blogapp.controllers;
 
+import ch.qos.logback.core.model.Model;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -44,6 +45,37 @@ import org.springframework.web.bind.annotation.*;
 
             //🥪3. Here is a simalar method like the addOne(), however this one multiplies and its able to accomplish the same output as addOne() using the @GetMapping
         }
+
+
+        //🍩0.2. Below are some notes for the view aspect (aka Thymeleaf) of MVC. how we pass data from our controller to the view
+
+        @GetMapping("/hello/{name}")
+        public String sayHello(@PathVariable String name, Model model) {
+            model.addAttribute("name", name);
+            return "hello";//return this html.file
+
+            //Notice this component doesn't have the ResponseBody annotation
+
+            //🍩0.3 check hello.html this is how we pass data to our "views" aka our html that has Thymeleaf
+
+        }
+
+
+        //Getting Data from Views
+
+        @GetMapping("/join")
+        public String showJoinForm() {
+            return "join";
+        }
+
+        @PostMapping("/join")//retrieving info/data from the html
+        public String joinCohort(@RequestParam(name = "cohort") String cohort, Model model) {
+            model.addAttribute("cohort", "Welcome to " + cohort + "!");
+            return "join";
+        }
+
+
+
 
 
 
