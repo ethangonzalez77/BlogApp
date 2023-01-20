@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" >
+<htmpostDl xmlns:th="http://www.thymeleaf.org" >
 <head th:replace="partials :: head">
 </head>
 <body>
 <nav th:replace="partials :: navbar">
 </nav>
 <h1>Welcome To My Site!</h1>
-<div th:each="post : ${allPosts}">
-    <p th:text="${post.title}" />
-    <p th:text="${post.body}" />
+<div th:each="post : ${posts}">
+    <p th:text="${post.getTitle()}" />
+    <p th:text="${post.getBody()}" />
 </div>
 </body>
 <footer th:replace="partials :: footer">
 </footer>
-</html>
+</htmpostDl>posts

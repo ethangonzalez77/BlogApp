@@ -3,13 +3,29 @@ package com.codeup.blogapp.model;
 
 import jakarta.persistence.*;
 
-//@Entity
-//@Table (name = "posts")
+@Entity
+@Table (name = "posts")
 public class Post {
 
+
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(unique = true, length = 100)
     private String title;
 
+    @Column(nullable = false, length = 1000)
     private String body;
+
+
+
+
+
+
+
+
 
     public Post(){};
 
