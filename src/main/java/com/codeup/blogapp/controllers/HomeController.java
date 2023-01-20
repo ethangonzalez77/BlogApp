@@ -8,16 +8,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class HomeController {
 
-    @GetMapping("/home")
-    @ResponseBody
-    public String hello() {
-        return "home";
-    }
+//    @GetMapping("/home")
+//    @ResponseBody
+//    public String hello() {
+//        return "homeiessssss";
+//    }
 
 
 
     //🍩0.1. Below are some notes for the view aspect (aka Thymeleaf) of MVC, look for 🍩0.2 for the continuation for these notes
-    @GetMapping("/home")
+    @GetMapping("/")
+//    @ResponseBody
     public String welcome() {
         return "home";
 

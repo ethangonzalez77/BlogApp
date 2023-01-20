@@ -8,5 +8,38 @@
 
 <h1>This is Dice page</h1>
 
+<!--🧇-->
+<form action="/RollDice/results" method="post">
+
+    <select name="n" id="n">
+        <option value="none" selected disabled hidden>Select a number:</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+    </select>
+
+    <button type="submit">Roll</button>
+</form>
+
+
+
+<!--<h2 th:text="${guess}"></h2>-->
+<span th:text="${n}"></span>
+
+
+
+<!--<h2 th:text="${diceRolled}"></h2>-->
+<span th:text="${random}"></span>
+
+
+<!--returns boolean value-->
+<span th:text="${guess}"></span>
+
+
+
+
 </body>
-</html>tml>
+</html>
