@@ -1,7 +1,9 @@
 package com.codeup.blogapp.controllers;
 
 import com.codeup.blogapp.model.Post;
+import com.codeup.blogapp.model.User;
 import com.codeup.blogapp.repositories.PostRepository;
+import com.codeup.blogapp.repositories.UserRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -12,10 +14,12 @@ import java.util.List;
 public class PostController {
 
 
-    private final PostRepository postDao;
+    private final PostRepository postDao;//creating a new object
+    private final UserRepository userDao;
 
-    public PostController(PostRepository postDao){
+    public PostController(PostRepository postDao, UserRepository userDao){
         this.postDao = postDao;
+        this.userDao = userDao;
         //dependency injection
     }
 
@@ -49,17 +53,30 @@ public class PostController {
         return "posts/show";
     }
 
-    @RequestMapping(path = "/posts/create", method = RequestMethod.GET)
-//    @ResponseBody
-    public String getCreate(){
+//    @RequestMapping(path = "/posts/create", method = RequestMethod.GET)
+////    @ResponseBody
+//    public String getCreate(){
+//
+//        return "posts/create";
+//    }
 
+    @GetMapping("/posts/create")
+    public String getForm(Model model){
+        model.addAttribute("post", new Post());
         return "posts/create";
     }
 
-    @RequestMapping(path = "/posts/create", method = RequestMethod.POST)
-//    @ResponseBody
-    public String postCreate(@RequestParam(name = "title") String title, @RequestParam(name = "body") String body){
-        postDao.save(new Post(title, body));
+    @PostMapping("/posts/create")
+    public String createPost(@ModelAttribute Post post){
+        User user = userDao.getReferenceById(1L);
+        post.setUser(user);
+        postDao.save(post);
         return "redirect:/posts";
     }
+
+
+
+
+
+
 }
