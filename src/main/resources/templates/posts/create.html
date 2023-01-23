@@ -5,23 +5,23 @@
     <title>Title</title>
 </head>
 <body>
-    <form  action="/posts/create" method="post" >
-        <label for="postTitle" >Title:</label>
-        <input type="text" name="title" id="postTitle">
+<!--    <form  action="/posts/create" method="post" >-->
+<!--        <label for="postTitle" >Title:</label>-->
+<!--        <input type="text" name="title" id="postTitle">-->
 
-        <label for="postBody" >Body:</label>
-        <input name="body" id="postBody"></input>
+<!--        <label for="postBody" >Body:</label>-->
+<!--        <input name="body" id="postBody"></input>-->
 
-        <button type="submit">Submit Post</button>
-    </form>
-
-<!--    <form th:action="@{/posts/create}" th:method="post" th:object="${post}">-->
-<!--        <label >Title:</label><br>-->
-<!--        <input th:field="${title}"><br>-->
-<!--        <label >Description:</label><br>-->
-<!--        <input th:field="${body}">-->
-<!--        <input type="submit" value="Submit">-->
+<!--        <button type="submit">Submit Post</button>-->
 <!--    </form>-->
+
+    <form th:action="@{/posts/create}" th:method="post" th:object="${post}">
+        <label >Title:</label><br>
+        <input th:field="*{title}"><br>
+        <label >Description:</label><br>
+        <input th:field="*{body}">
+        <input type="submit" value="Submit">
+    </form>
 
 
 
