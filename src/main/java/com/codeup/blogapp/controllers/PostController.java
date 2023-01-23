@@ -44,14 +44,32 @@ public class PostController {
         return "posts/index";
     }
 
+//    @GetMapping(path = "/posts/{id}")
+//    public String post(Model model){
+//        Post post1 = new Post("post #1 title", "post #1 body");
+//        model.addAttribute("title", "Individual Post");
+//        model.addAttribute("postTitle", post1.getTitle());
+//        model.addAttribute("postBody", post1.getBody());
+//        model.addAttribute("userEmail", post1.getEmail());
+//        return "posts/show";
+//    }
+
     @GetMapping(path = "/posts/{id}")
-    public String post(Model model){
-        Post post1 = new Post("post #1 title", "post #1 body");
-        model.addAttribute("title", "Individual Post");
-        model.addAttribute("postTitle", post1.getTitle());
-        model.addAttribute("postBody", post1.getBody());
+    public String viewPost(@PathVariable long id, Model model){
+//        model.addAttribute("title", "Individual Post");
+//        model.addAttribute("post", postDao.findById(id));
+        Post post = postDao.getReferenceById(id);
+
+        User user = userDao.getReferenceById(post.getUser().getId());
+        model.addAttribute("postTitle", post.getTitle());
+        model.addAttribute("postBody", post.getBody());
+        model.addAttribute("postID", post.getId());
+        model.addAttribute("userEmail", user.getEmail());
+
         return "posts/show";
     }
+
+
 
 //    @RequestMapping(path = "/posts/create", method = RequestMethod.GET)
 ////    @ResponseBody
@@ -76,7 +94,22 @@ public class PostController {
 
 
 
+    @GetMapping(path = "/posts/{id}/edit")
+    public String getEdit(@PathVariable long id, Model model){
+//        model.addAttribute("title", "Edit Post");
+        Post post = postDao.getReferenceById(id);
+        model.addAttribute("post", post);
+        return "posts/edit";
+    }
 
+    @PostMapping(path = "/posts/{id}/edit")
+    public String postEdit(@PathVariable long id, @RequestParam String title, @RequestParam String body){
+        Post post = postDao.getReferenceById(id);
+        post.setTitle(title);
+        post.setBody(body);
+        postDao.save(post);
+        return "redirect:/posts";
+    }
 
 
 }

@@ -2,7 +2,10 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="partials :: head"></head>
 <body>
-<h3 th:text="${postTitle}"></h3>
-<p th:text="${postBody}"></p>
+    <h3 th:text="${postTitle}"></h3>
+    <p th:text="${postBody}"></p>
+    <p th:text="${userEmail}"></p>
+    <p th:text="${user}"></p>
+    <p th:text="${userPassword}"></p>
 </body>
 </html>

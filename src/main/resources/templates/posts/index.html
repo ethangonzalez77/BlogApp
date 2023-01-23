@@ -3,13 +3,51 @@
 <head th:replace="partials :: head">
 </head>
 <body>
+
+
+
+<form name="create" action="/posts/create" method="get">
+    <button type="submit">Creating New Post</button>
+</form>
+
+
+<!--<div>-->
+<!--    <h2 th:each="post : ${posts}"></h2>-->
+
+<!--    <form name="view" th:action="${'/posts/' + post.getId()}" method="get">-->
+<!--        <button type="submit">View</button>-->
+<!--    </form>-->
+<!--    <form name="edit" th:action="${'/posts/' + post.getId() + '/edit'}" method="get">-->
+<!--        <button type="submit">Edit</button>-->
+<!--    </form>-->
+<!--</div>-->
+
+
+
+
+
 <nav th:replace="partials :: navbar">
 </nav>
 <h1>Welcome To My Site!</h1>
 <div th:each="post : ${posts}">
     <p th:text="${post.getTitle()}" />
-    <p th:text="${post.getBody()}" />
+
+    <form name="view" th:action="${'/posts/' + post.getId()}" method="get">
+        <button type="submit">View</button>
+    </form>
+
+    <form name="edit" th:action="${'/posts/' + post.getId() + '/edit'}" method="get">
+        <button type="submit">Edit</button>
+    </form>
+
 </div>
+
+
+
+
+
+
+
 </body>
 <footer th:replace="partials :: footer">
 </footer>
