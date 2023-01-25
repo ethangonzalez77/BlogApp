@@ -20,11 +20,17 @@ public class EmailService {
 
     public void preparedAndSend (Post post, String subject, String body) {
         SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom(from);
-        message.setTo(from);
-        message.setSubject(from);
-        message.setText(from);
+//        message.setFrom(from);
+//        message.setTo(from);
+//        message.setSubject(from);
+//        message.setText(from);
 
+        //dont do this👆
+
+        message.setFrom(from);
+        message.setTo(post.getUser().getEmail());
+        message.setSubject(subject);
+        message.setText(body);
 
         try {
             this.emailSender.send(message);
