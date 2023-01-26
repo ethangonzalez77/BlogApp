@@ -1,6 +1,11 @@
+package com.codeup.blogapp.model;
+
+import com.codeup.blogapp.model.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.Collection;
 
 public class UserWithRoles extends User implements UserDetails {
 

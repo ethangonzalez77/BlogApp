@@ -27,7 +27,21 @@
 
 
 <nav th:replace="partials :: navbar">
+
+
 </nav>
+
+<nav>
+    <ul>
+        <!-- More links here... -->
+        <li>
+            <form th:action="@{/logout}" th:method="post">
+                <button class="btn-link btn" style="margin-top: 8px">Logout</button>
+            </form>
+        </li>
+    </ul>
+</nav>
+
 <h1>Welcome To My Site!</h1>
 <div th:each="post : ${posts}">
     <p th:text="${post.getTitle()}" />

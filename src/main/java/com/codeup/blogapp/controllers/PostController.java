@@ -5,6 +5,7 @@ import com.codeup.blogapp.model.User;
 import com.codeup.blogapp.repositories.PostRepository;
 import com.codeup.blogapp.repositories.UserRepository;
 import com.codeup.blogapp.services.EmailService;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -88,14 +89,23 @@ public class PostController {
         return "posts/create";
     }
 
-    @PostMapping("/posts/create")
-    public String createPost(@ModelAttribute Post post){
-        User user = userDao.getReferenceById(1L);
-        post.setUser(user);
+//    @PostMapping("/posts/create")
+//    public String createPost(@ModelAttribute Post post){
+//        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        post.setUser(user);
+//
+//        emailService.preparedAndSend(post, post.getTitle(), post.getBody());
+//        postDao.save(post);
+//
+//        return "redirect:/posts";
+//    }
 
-        emailService.preparedAndSend(post, post.getTitle(), post.getBody());
-        postDao.save(post);
-
+    @PostMapping(path = "/posts/create")
+    public String postCreate(@ModelAttribute Post createdPost){
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        createdPost.setUser(user);
+        emailService.preparedAndSend(createdPost, "Your latest blog post: " + createdPost.getTitle(), "This is the body of your post!" + createdPost.getBody());
+        postDao.save(createdPost);
         return "redirect:/posts";
     }
 
